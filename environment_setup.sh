@@ -47,7 +47,6 @@ shift "$(($OPTIND -1))"
 VENVNAME=$1
 MODULES='2022 Python'
 module load $MODULES
-module list
 
 VENVPATH=${WORKDIR}/${VENVNAME}
 echo "seting up in:"
@@ -70,10 +69,10 @@ if [ "$SUPTEN" = true ] ; then
     EXTRAMODULES='CUDA/11.3.1 cuDNN/8.2.1.32-CUDA-11.3.1'
     MODULES="${MODULES} ${EXTRAMODULES}"
     module load $EXTRAMODULES
-    module list
     pip3 install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
-    pip3 install pyg_lib torch_scatter torch_sparse -f https://data.pyg.org/whl/torch-1.12.1+cu113.html
-    pip3 install torch-geometric
+    ## MEssage passing networks installation currently not working 
+    #pip3 install pyg_lib torch_scatter torch_sparse -f https://data.pyg.org/whl/torch-1.12.0+cu113.html
+    #pip3 install torch-geometric
 fi
 
 # If with jupyter

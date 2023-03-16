@@ -14,8 +14,10 @@ Optional support besides basic packages:
 - pytorch (CUDA enabled)
 - cartopy
 
-testsetup.slurm is for testing purposes
+Keeps a record of the required modules
+and adds those as a load statement in the 
+first lines of VENVNAME/bin/activate
+Correct modules should therefore automatically load 
+upon activation
 
-TODO: make sure lines are added to VENVNAME/bin/activate
-such that the right module are also loaded upon activation
-of the new environment.
+testsetup.slurm is for testing purposes
