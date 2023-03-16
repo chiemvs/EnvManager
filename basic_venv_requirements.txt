@@ -1,0 +1,13 @@
+Cython
+numpy
+scipy
+matplotlib
+netCDF4
+zarr
+pyarrow
+fsspec
+urllib3
+dask
+pandas
+scikit-learn
+lilio
