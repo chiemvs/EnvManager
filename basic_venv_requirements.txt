@@ -9,5 +9,7 @@ fsspec
 urllib3
 dask
 pandas
+tables
 scikit-learn
 lilio
+cdsapi

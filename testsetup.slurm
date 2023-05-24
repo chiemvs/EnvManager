@@ -12,14 +12,15 @@ module load Python
 
 VENVNAME=TESTVENV
 
-#$HOME/Documents/EnvManager/environment_setup.sh -c -j -t -s $VENVNAME
-$HOME/Documents/EnvManager/environment_setup.sh -t -s $VENVNAME
+#$HOME/Documents/EnvManager/environment_setup.sh -c -j -t -p -s $VENVNAME
+$HOME/Documents/EnvManager/environment_setup.sh -p -s $VENVNAME
 
-module load CUDA/11.3.1 cuDNN/8.2.1.32-CUDA-11.3.1
-source $TMPDIR/$VENVNAME/bin/activate
+# Sourcing automatically loads modules
+source $TMPDIR/$VENVNAME/bin/activate 
 #source $HOME/$VENVNAME/bin/activate
 which python3
 python3 --version
 
 python3 -c 'import cartopy'
 python3 -c 'import torch; print(torch.cuda.is_available())'
+python3 -c 'import torch_geometric'

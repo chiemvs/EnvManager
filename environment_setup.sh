@@ -11,7 +11,8 @@ Help()
    echo "options:"
    echo "s     Setup the environment in \$TMPDIR (usually scratch)."
    echo "j     Include jupyter support."
-   echo "t     Include tensorflow support."
+   echo "t     Include tensorflow support (currently disabled)."
+   echo "p     Include pytorch support."
    echo "c     Include cartopy support."
    echo "h     Print this Help."
    echo
@@ -20,9 +21,10 @@ Help()
 WORKDIR=$HOME
 SUPJUP=false
 SUPTEN=false
+SUPTOR=false
 SUPCAR=false
 
-while getopts ":sjtch" option; do
+while getopts ":sjtpch" option; do
     case $option in
         h)
             Help
@@ -33,6 +35,8 @@ while getopts ":sjtch" option; do
             SUPJUP=true;;
         t)
             SUPTEN=true;;
+        p)
+            SUPTOR=true;;
         c)
             SUPCAR=true;;
         \?)
@@ -60,7 +64,7 @@ pip3 install wheel
 pip3 install -r $HOME/Documents/EnvManager/basic_venv_requirements.txt
 
 # If with torch support
-if [ "$SUPTEN" = true ] ; then
+if [ "$SUPTOR" = true ] ; then
     echo "including pytorch support"
     #module load CUDA/11.7.0 cuDNN/8.4.1.50-CUDA-11.7.0
     #pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
@@ -70,9 +74,15 @@ if [ "$SUPTEN" = true ] ; then
     MODULES="${MODULES} ${EXTRAMODULES}"
     module load $EXTRAMODULES
     pip3 install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
-    ## MEssage passing networks installation currently not working 
-    #pip3 install pyg_lib torch_scatter torch_sparse -f https://data.pyg.org/whl/torch-1.12.0+cu113.html
-    #pip3 install torch-geometric
+    pip3 install torch_geometric
+    # Optional dependencies, uncomment if needed
+    #pip3 install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.12.1+cu113.html
+fi
+
+# If with tensorflow
+if [ "$SUPTEN" = true ] ; then
+    echo "including tensorflow support"
+    echo "tensorflow support disabled"
 fi
 
 # If with jupyter
