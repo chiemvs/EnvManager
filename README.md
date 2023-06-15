@@ -5,8 +5,11 @@ at the BAZIS cluster of VU Amsterdam
 [link](https://bazis.readthedocs.io/en/latest/)
 
 Builds on: python3 -m venv
+
 in combination with: pip3 
+
 for package management
+
 Employs the latest Python version available in 2022 module stack
 
 For usage:
