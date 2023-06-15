@@ -4,7 +4,10 @@ Reproducable creation of virtual environments
 at the BAZIS cluster of VU Amsterdam
 [link](https://bazis.readthedocs.io/en/latest/)
 
-Uses the latest Python version available in 2022 stack
+Builds on: python3 -m venv
+in combination with: pip3 
+for package management
+Employs the latest Python version available in 2022 module stack
 
 For usage:
 ./environment\_setup.sh -h 
