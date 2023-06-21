@@ -55,13 +55,16 @@ module load $MODULES
 VENVPATH=${WORKDIR}/${VENVNAME}
 echo "seting up in:"
 echo $VENVPATH
+SCRIPTDIR=`dirname $0`
+echo "script location:"
+echo $SCRIPTDIR
 
 python3 --version
 python3 -m venv $VENVPATH
 source ${VENVPATH}/bin/activate # Does not have effect when script ends
 pip3 install --upgrade pip
 pip3 install wheel
-pip3 install -r $HOME/Documents/EnvManager/basic_venv_requirements.txt
+pip3 install -r $SCRIPTDIR/basic_venv_requirements.txt
 
 # If with torch support
 if [ "$SUPTOR" = true ] ; then
