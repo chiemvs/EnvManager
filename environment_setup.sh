@@ -11,8 +11,8 @@ Help()
    echo "options:"
    echo "s     Setup the environment in \$TMPDIR (usually scratch)."
    echo "j     Include jupyter support."
-   echo "t     Include tensorflow support (currently disabled)."
-   echo "p     Include pytorch support."
+   echo "t     Include tensorflow support (2.9.0)."
+   echo "p     Include pytorch support (1.12.1)."
    echo "c     Include cartopy support."
    echo "h     Print this Help."
    echo
@@ -82,7 +82,13 @@ fi
 # If with tensorflow
 if [ "$SUPTEN" = true ] ; then
     echo "including tensorflow support"
-    echo "tensorflow support disabled"
+    if [ "$SUPTOR" = false ] ; then
+        # If it were true then these modules have been already laded
+        EXTRAMODULES='CUDA/11.3.1 cuDNN/8.2.1.32-CUDA-11.3.1'
+        MODULES="${MODULES} ${EXTRAMODULES}"
+        module load $EXTRAMODULES
+    fi
+    pip3 install tensorflow==2.9.0
 fi
 
 # If with jupyter
